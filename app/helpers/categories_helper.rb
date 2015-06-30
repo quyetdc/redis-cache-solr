@@ -6,7 +6,7 @@ module CategoriesHelper
 		#  if not cache -> cache it
 		if !categories || categories == '[]'
 			categories = Category.all.to_json
-			$redis.set('categories', categories)			
+			$redis.set('categories', categories)
 		end
 
 		# decode json format
