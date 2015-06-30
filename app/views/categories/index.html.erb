@@ -1,0 +1,9 @@
+<h1>Categories#index</h1>
+<ul>
+	<% @categories.each do |c| %>
+		<h3> Name </h3>
+			<%= c['name'] %>
+		<h3> Description </h3>
+			<%= c['desc'] %>
+	<% end %>
+</ul>
