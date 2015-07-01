@@ -1,28 +1,49 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a tutorial project for
 
-Things you may want to cover:
+* Redis
+* Cache
+* Full text searching
 
-* Ruby version
+=== What I uses 
 
-* System dependencies
+* rails 
+* ruby 
+* redis 
+* sunspot
+* twitter-bootstrap
+* rack mini profiler
+* devise
+...
 
-* Configuration
+=== How to
 
-* Database creation
+* Install redis on your local first
 
-* Database initialization
+=begin rdoc
 
-* How to run the test suite
+$ wget http://download.redis.io/redis-stable.tar.gz
+$ tar xvzf redis-stable.tar.gz
+$ cd redis-stable
 
-* Services (job queues, cache servers, search engines, etc.)
+$ make
+$ make test
 
-* Deployment instructions
+$ cp src/redis-server src/redis-cli /usr/bin
 
-* ...
+$ redis-serve
 
+=end
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+* Migrate database
+
+* Run db seed
+
+* Start sorl on your local
+
+=begin rdoc
+bundle exec rake sunspot:solr:start
+=end
+
+* Check things on localhost:3000/categories
