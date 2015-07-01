@@ -4,7 +4,9 @@ class Category < ActiveRecord::Base
   validates :name, uniqueness: true
 
   searchable do
-  	text :name, :desc
+  	text :name do
+      name.downcase
+    end
   end
 
   # update cache every time a category created or updated
@@ -12,5 +14,5 @@ class Category < ActiveRecord::Base
 	$redis.del 'categories'
   end
 
-  
+
 end

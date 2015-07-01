@@ -1,18 +1,119 @@
 <%= cache("all_categories-#{Category.last.id}") do %>
   <div class="row"> 
     <h1 class="col-md-6">Categories#index</h1>
-    <h1 class="col-md-6">Categories#index</h1>    
+
+    <!-- FULL TEXT SEARCH -->
+    <div class="col-md-6" style="margin-top: 25px;">
+      <div class="col-md-1">
+        <h5>Search</h5>      
+      </div>
+      <div class="col-md-6">
+        <input type='text' class='form-control' id='search-text-input'/>      
+        <ul id='search-results'>
+
+        </ul>
+      </div>
+    </div>    
   </div>
-  
+
   <ul>
     <% @categories.each do |c| %>
         <%= cache c do %>
+          <div id='category-<%= c['id'] %>' class='category-item'>
             <h3> Name </h3>
             <%= c['name'] %>
             <h3> Description </h3>
             <%= c['desc'] %>
             <hr />
+          </div>
         <% end %>
     <% end %>
   </ul>
 <% end %>
+
+<script type="text/javascript">
+
+  // $('#search-text-input').on("keypress", function (e) {            
+
+  //     if (e.keyCode == 13) {
+
+  //       console.log('enter key pressed');
+        
+  //       // Cancel the default action on keypress event
+  //       e.preventDefault(); 
+        
+  //       $("#search-results").hide();          
+
+  //       return;
+  //     }
+  // });
+
+  $( "#search-text-input" ).keyup(function(e) {
+    if (e.keyCode == 13) {
+      console.log('enter key pressed');
+      
+      // Cancel the default action on keypress event
+      e.preventDefault(); 
+      
+      $("#search-results").hide();          
+
+      return;
+    }
+
+    var searchParam = $( "#search-text-input" ).val();
+    if (searchParam == ''){
+      $("#search-results").hide();
+      return
+    }
+
+    $.ajax({
+      url: '/categories/search.json',
+      method: 'POST',
+      data: {
+        search: searchParam
+      },
+      dataType: 'json',
+      success: function(data){
+
+        if (data.length == 0){
+          return;
+        }
+
+        $("#search-results").empty();
+
+        $("#search-results").show();
+
+        $('.category-item').hide();        
+
+        for (var i = 0; i < data.length; i++){
+          $("#search-results").append('<li>' + data[i].name + '</li>');
+          $('#category-' + data[i].id).show();
+        }      
+      },
+      error: function(jqXHR, textStatus){
+
+      }
+    });
+
+  });
+    
+</script>
+
+<style type="text/css">
+  #search-results{
+    display: none;
+    display: block;
+    border: solid 1px #d8d8d8;
+    border-top: none;
+    top: -1px;
+    position: relative;
+    list-style: none;
+  }
+
+  #search-results li {
+    padding-top: 10px;
+    font-size: 12px
+    color: #c3c3c3;
+  }
+
+</style>

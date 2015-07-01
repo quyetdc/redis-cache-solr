@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   get 'categories', to: 'categories#index'
 
+  post 'categories/search', to: 'categories#search'
+
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
