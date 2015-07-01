@@ -52,3 +52,8 @@ gem 'redis-rails'
 # gem 'redis-rack-cache'
 
 gem 'rack-mini-profiler', require: false
+
+gem 'sunspot_rails'
+gem 'sunspot_solr' # optional pre-packaged Solr distribution for use in development
+
+gem "twitter-bootstrap-rails"

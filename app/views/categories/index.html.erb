@@ -1,14 +1,18 @@
 <%= cache("all_categories-#{Category.last.id}") do %>
-    <h1>Categories#index</h1>
-    <ul>
-      <% @categories.each do |c| %>
-          <%= cache c do %>
-              <h3> Name </h3>
-              <%= c['name'] %>
-              <h3> Description </h3>
-              <%= c['desc'] %>
-              <hr />
-          <% end %>
-      <% end %>
-    </ul>
+  <div class="row"> 
+    <h1 class="col-md-6">Categories#index</h1>
+    <h1 class="col-md-6">Categories#index</h1>    
+  </div>
+  
+  <ul>
+    <% @categories.each do |c| %>
+        <%= cache c do %>
+            <h3> Name </h3>
+            <%= c['name'] %>
+            <h3> Description </h3>
+            <%= c['desc'] %>
+            <hr />
+        <% end %>
+    <% end %>
+  </ul>
 <% end %>
