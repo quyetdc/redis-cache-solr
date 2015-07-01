@@ -28,11 +28,10 @@ $ tar xvzf redis-stable.tar.gz
 $ cd redis-stable
 
 $ make
-$ make test
 
 $ cp src/redis-server src/redis-cli /usr/bin
 
-$ redis-serve
+$ redis-server
 ```
 
 * Migrate database
