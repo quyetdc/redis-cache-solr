@@ -1,12 +1,13 @@
-== README
+## README
 
-This is a tutorial project for
+### Intro
+This is a tutorial project I created for
 
 * Redis
 * Cache
 * Full text searching
 
-=== What I uses 
+### What I uses 
 
 * rails 
 * ruby 
@@ -17,7 +18,7 @@ This is a tutorial project for
 * devise
 ...
 
-=== How to
+### How to
 
 * Install redis on your local first
 
@@ -44,4 +45,4 @@ $ redis-serve
 $ bundle exec rake sunspot:solr:start
 ```
 
-* Check things on localhost:3000/categories
+* Check things on ```localhost:3000/categories```
